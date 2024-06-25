@@ -24,7 +24,7 @@ class FormScreen extends StatefulWidget {
 
 class _FormScreenState extends State<FormScreen> {
   final TextEditingController username = TextEditingController();
-  final _formKey = GlobalKey();
+  final _formKey = GlobalKey<FormState>();
   @override
   Widget build(BuildContext context) {
     return Scaffold(
@@ -39,13 +39,19 @@ class _FormScreenState extends State<FormScreen> {
               controller: username,
               decoration: const InputDecoration(labelText: "Username"),
               validator: (value) {
-                if (value != null) {
+                if (value!.isNotEmpty) {
                   return null;
                 } else {
                   return "value = null";
                 }
               },
             ),
+            ElevatedButton(
+              onPressed: () {
+                _formKey.currentState!.validate();
+              },
+              child: const Text("Submit"),
+            )
           ],
         ),
       ),
