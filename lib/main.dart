@@ -10,10 +10,40 @@ class MainApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return const MaterialApp(
-      home: Scaffold(
-        body: Center(
-          child: Text('Hello World!'),
-        ),
+      home: Form(),
+    );
+  }
+}
+
+class Form extends StatefulWidget {
+  const Form({super.key});
+
+  @override
+  State<Form> createState() => _FormState();
+}
+
+class _FormState extends State<Form> {
+  final TextEditingController username = TextEditingController();
+  @override
+  Widget build(BuildContext context) {
+    return Scaffold(
+      appBar: AppBar(
+        title: const Text("Form"),
+      ),
+      body: Column(
+        children: [
+          TextFormField(
+            controller: username,
+            decoration: const InputDecoration(labelText: "Username"),
+            validator: (value) {
+              if (value != null) {
+                return null;
+              } else {
+                return "value = null";
+              }
+            },
+          ),
+        ],
       ),
     );
   }
