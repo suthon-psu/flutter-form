@@ -48,7 +48,10 @@ class _FormScreenState extends State<FormScreen> {
             ),
             ElevatedButton(
               onPressed: () {
-                _formKey.currentState!.validate();
+                bool isValidate = _formKey.currentState!.validate();
+                if (isValidate) {
+                  print(username.text);
+                }
               },
               child: const Text("Submit"),
             )
